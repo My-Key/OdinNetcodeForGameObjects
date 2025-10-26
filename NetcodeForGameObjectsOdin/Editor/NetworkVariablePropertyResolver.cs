@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using Unity.Netcode;
@@ -8,9 +11,11 @@ public class NetworkVariablePropertyResolver<T> : OdinPropertyResolver<NetworkVa
 	public override InspectorPropertyInfo GetChildInfo(int childIndex)
 	{
 		var getterSetter = Activator.CreateInstance(typeof(NetworkVariableValueGetterSetter)) as IValueGetterSetter;
+		
+		var attributes = Property.Attributes.Where(x => x is not PropertyGroupAttribute).ToList();
 
 		return InspectorPropertyInfo.CreateValue("m_InternalValue", 0, SerializationBackend.None, getterSetter,
-			Property.Attributes);
+			attributes);
 	}
 
 	public override int ChildNameToIndex(string name) => 0;
