@@ -2,7 +2,7 @@
 
 ### How to install
 
-Put 'NetcodeForGameObjectsOdin' in Assets folder
+Put `NetcodeForGameObjectsOdin` in Assets folder
 
 ## Netcode for GameObjects
 
